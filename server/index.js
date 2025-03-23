@@ -1,5 +1,3 @@
-require("dotenv").config(); // Load env variables first
-
 const express = require("express");
 const db = require("./db/config");
 const route = require("./controllers/route");
@@ -7,8 +5,9 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 
 // Use Railway's provided port (fallback to 5002 for local development)
-const port = process.env.PORT || 5002;
-const host = "0.0.0.0"; // Allow external access on Railway
+const port = 5002;
+
+require("dotenv").config();
 
 const fs = require("fs");
 const path = require("path");
