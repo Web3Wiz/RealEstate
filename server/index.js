@@ -7,8 +7,8 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 
 // Use Railway's provided port (fallback to 5002 for local development)
-const port = process.env.PORT || 8080;
-const host_ip = "0.0.0.0"; // Allow external access on Railway
+const port = process.env.PORT || 5002;
+const host = "0.0.0.0"; // Allow external access on Railway
 
 const fs = require("fs");
 const path = require("path");
@@ -34,12 +34,12 @@ const server = app.listen(port, () => {
       ? "https"
       : "http";
   const { address, port } = server.address();
-  const host = address === "::" ? host_ip : address;
+  const host = address === "::" ? "127.0.0.1" : address;
   console.log(`Server listening at ${protocol}://${host}:${port}/`);
 });
 
 // Connect to MongoDB
-const DATABASE_URL = process.env.DB_URL || "mongodb://" + host + ":27017";
+const DATABASE_URL = process.env.DB_URL || "mongodb://127.0.0.1:27017";
 const DATABASE = process.env.DB || "Prolink";
 
 db(DATABASE_URL, DATABASE);
