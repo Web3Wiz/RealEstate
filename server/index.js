@@ -8,7 +8,7 @@ const cors = require("cors");
 
 // Use Railway's provided port (fallback to 5002 for local development)
 const port = process.env.PORT || 8080;
-const host = "0.0.0.0"; // Allow external access on Railway
+const host_ip = "0.0.0.0"; // Allow external access on Railway
 
 const fs = require("fs");
 const path = require("path");
@@ -34,7 +34,7 @@ const server = app.listen(port, () => {
       ? "https"
       : "http";
   const { address, port } = server.address();
-  const host = address === "::" ? host : address;
+  const host = address === "::" ? host_ip : address;
   console.log(`Server listening at ${protocol}://${host}:${port}/`);
 });
 
